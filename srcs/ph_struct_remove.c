@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_main.c                                          :+:      :+:    :+:   */
+/*   ph_struct_remove.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 12:04:00 by eboris            #+#    #+#             */
-/*   Updated: 2021/02/18 14:45:41 by eboris           ###   ########.fr       */
+/*   Created: 2021/02/18 14:08:21 by eboris            #+#    #+#             */
+/*   Updated: 2021/02/18 14:13:58 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ph_main.h"
 
-t_phmain	*ph_main;
-
-int	main(int argc, char **argv)
+void	ph_struct_remove(t_phmain **ph_main)
 {
-	extern t_phmain	*ph_main;
-
-	//
-	ph_main = ph_struct_add();
-	(void)argc;
-	(void)argv;
-	ph_exit(1);
-	return (0);
+	free(*ph_main);
+	*ph_main = NULL;
 }

@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_main.c                                          :+:      :+:    :+:   */
+/*   ph_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 12:04:00 by eboris            #+#    #+#             */
-/*   Updated: 2021/02/18 14:45:41 by eboris           ###   ########.fr       */
+/*   Created: 2021/02/18 14:12:59 by eboris            #+#    #+#             */
+/*   Updated: 2021/02/18 14:46:14 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ph_main.h"
 
-t_phmain	*ph_main;
-
-int	main(int argc, char **argv)
+void	ph_exit(int	error)
 {
 	extern t_phmain	*ph_main;
 
-	//
-	ph_main = ph_struct_add();
-	(void)argc;
-	(void)argv;
-	ph_exit(1);
-	return (0);
+	if (error != 0)
+		ph_exit_print_error(error);
+	ph_struct_remove(&ph_main);
+	ph_putstr_fd("Philosophers: Version 1.00.\n", 1);
+	exit(0);
+}
+
+void	ph_exit_print_error(int	error)
+{
+	if (error == 1)
+	{
+		ph_putstr_fd("Philosophers: Malloc error!\n", 2);
+	}
 }

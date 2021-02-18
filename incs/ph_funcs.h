@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_main.c                                          :+:      :+:    :+:   */
+/*   ph_funcs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 12:04:00 by eboris            #+#    #+#             */
-/*   Updated: 2021/02/18 14:45:41 by eboris           ###   ########.fr       */
+/*   Created: 2021/02/18 14:37:53 by eboris            #+#    #+#             */
+/*   Updated: 2021/02/18 15:03:26 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ph_main.h"
+#ifndef PH_FUNCS_H
+# define PH_FUNCS_H
 
-t_phmain	*ph_main;
+/*
+** ph_print.c
+*/
+void	ph_putchar_fd(char c, int fd);
+void	ph_putstr_fd(char const *s, int fd);
+void	ph_putnbr_fd(int n, int fd);
 
-int	main(int argc, char **argv)
-{
-	extern t_phmain	*ph_main;
+/*
+** ph_malloc.c
+*/
+void	*ph_memalloc(size_t size);
 
-	//
-	ph_main = ph_struct_add();
-	(void)argc;
-	(void)argv;
-	ph_exit(1);
-	return (0);
-}
+#endif

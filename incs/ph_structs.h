@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_main.c                                          :+:      :+:    :+:   */
+/*   ph_structs.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 12:04:00 by eboris            #+#    #+#             */
-/*   Updated: 2021/02/18 14:45:41 by eboris           ###   ########.fr       */
+/*   Created: 2021/02/18 13:31:25 by eboris            #+#    #+#             */
+/*   Updated: 2021/02/18 14:22:08 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ph_main.h"
+#ifndef PH_STRUCTS_H
+# define PH_STRUCTS_H
 
-t_phmain	*ph_main;
-
-int	main(int argc, char **argv)
+typedef struct	s_phmain
 {
-	extern t_phmain	*ph_main;
+	int			i;
+}				t_phmain;
 
-	//
-	ph_main = ph_struct_add();
-	(void)argc;
-	(void)argv;
-	ph_exit(1);
-	return (0);
-}
+/*
+** ph_struct_add.c
+*/
+t_phmain	*ph_struct_add(void);
+
+/*
+** ph_struct_remove.c
+*/
+void		ph_struct_remove(t_phmain **ph_main);
+
+#endif

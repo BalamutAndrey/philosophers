@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_main.c                                          :+:      :+:    :+:   */
+/*   ph_struct_add.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 12:04:00 by eboris            #+#    #+#             */
-/*   Updated: 2021/02/18 14:45:41 by eboris           ###   ########.fr       */
+/*   Created: 2021/02/18 13:44:31 by eboris            #+#    #+#             */
+/*   Updated: 2021/02/18 15:04:50 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ph_main.h"
 
-t_phmain	*ph_main;
-
-int	main(int argc, char **argv)
+t_phmain	*ph_struct_add(void)
 {
-	extern t_phmain	*ph_main;
+	t_phmain	*ph_main;
 
-	//
-	ph_main = ph_struct_add();
-	(void)argc;
-	(void)argv;
-	ph_exit(1);
-	return (0);
+	ph_main = (t_phmain *)ph_memalloc(sizeof (t_phmain));
+	return (ph_main);
 }
