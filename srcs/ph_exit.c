@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:12:59 by eboris            #+#    #+#             */
-/*   Updated: 2021/02/18 15:09:48 by eboris           ###   ########.fr       */
+/*   Updated: 2021/02/19 12:31:47 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@ void	ph_exit(int	error)
 
 	if (error != 0)
 		ph_exit_print_error(error);
-	ph_struct_remove(&ph_main);
-	ph_putstr_fd("Philosophers: Version 1.00.\n", 1);
+	ph_struct_remove();
+	ph_main = NULL;
+	ph_putstr_fd("Philosophers: Version 1.00.\n", STDOUT_FILENO);
 	exit(error);
 }
 
 void	ph_exit_print_error(int	error)
 {
 	if (error == 1)
-	{
-		ph_putstr_fd("Philosophers: Malloc error!\n", 2);
-	}
+		ph_putstr_fd("Philosophers: Malloc error!\n", STDERR_FILENO);
 }

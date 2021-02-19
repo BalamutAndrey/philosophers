@@ -6,14 +6,16 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:08:21 by eboris            #+#    #+#             */
-/*   Updated: 2021/02/18 14:13:58 by eboris           ###   ########.fr       */
+/*   Updated: 2021/02/18 17:21:27 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ph_main.h"
 
-void	ph_struct_remove(t_phmain **ph_main)
+void	ph_struct_remove()
 {
-	free(*ph_main);
-	*ph_main = NULL;
+	extern t_phmain	*ph_main;
+
+	free(ph_main);
+	ph_main = NULL;
 }

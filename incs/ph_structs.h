@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 13:31:25 by eboris            #+#    #+#             */
-/*   Updated: 2021/02/18 14:22:08 by eboris           ###   ########.fr       */
+/*   Updated: 2021/02/18 17:32:27 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ t_phmain	*ph_struct_add(void);
 /*
 ** ph_struct_remove.c
 */
-void		ph_struct_remove(t_phmain **ph_main);
+void		ph_struct_remove();
 
 #endif
