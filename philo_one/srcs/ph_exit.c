@@ -14,12 +14,12 @@
 
 void	ph_exit(int	error)
 {
-	extern t_phmain	*ph_main;
+	extern t_phmain	*g_ph_main;
 
 	if (error != 0)
 		ph_exit_print_error(error);
 	ph_struct_remove();
-	ph_main = NULL;
+	g_ph_main = NULL;
 	ph_putstr_fd("Philosophers: Version 1.00.\n", STDOUT_FILENO);
 	exit(error);
 }

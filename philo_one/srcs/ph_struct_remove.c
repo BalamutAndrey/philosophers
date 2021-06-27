@@ -14,8 +14,8 @@
 
 void	ph_struct_remove(void)
 {
-	extern t_phmain	*ph_main;
+	extern t_phmain	*g_ph_main;
 
-	free(ph_main);
-	ph_main = NULL;
+	free(g_ph_main);
+	g_ph_main = NULL;
 }
