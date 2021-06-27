@@ -12,13 +12,13 @@
 
 #include "ph_main.h"
 
-t_phmain	*ph_main;
+t_phmain	*g_ph_main;
 
 int	main(int argc, char **argv)
 {
-	extern t_phmain	*ph_main;
+	extern t_phmain	*g_ph_main;
 
-	ph_main = ph_struct_add();
+	g_ph_main = ph_struct_add();
 	(void)argc;
 	(void)argv;
 	ph_exit(0);

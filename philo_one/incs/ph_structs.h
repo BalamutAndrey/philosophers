@@ -13,10 +13,10 @@
 #ifndef PH_STRUCTS_H
 # define PH_STRUCTS_H
 
-typedef struct	s_phmain
+typedef struct s_phmain
 {
-	int			i;
-}				t_phmain;
+	int	i;
+}	t_phmain;
 
 /*
 ** ph_struct_add.c
