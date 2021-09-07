@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:05:32 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/07 14:44:23 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/07 15:07:12 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int		main(int argc, char **argv);
 ** ph_exit.c
 */
 void	ph_exit(t_phmain *ph_main, int error);
+
+/*
+** ph_errors.c
+*/
 void	ph_exit_print_error(int	error);
+void	ph_exit_print_error_usage(void);
 
 #endif
