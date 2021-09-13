@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_struct_add.c                                    :+:      :+:    :+:   */
+/*   ph_time.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 13:44:31 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/13 15:31:53 by eboris           ###   ########.fr       */
+/*   Created: 2021/09/13 11:31:38 by eboris            #+#    #+#             */
+/*   Updated: 2021/09/13 12:14:36 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ph_main.h"
 
-t_phmain	*ph_struct_add(int argc, char **argv)
+u_int64_t	ph_gettime_ms(t_phmain *main)
 {
-	t_phmain	*ph_main;
+	struct timeval	curr;
+	int				get_time_return;
+	u_int64_t		sec;
+	u_int64_t		usec;
+	u_int64_t		msec;
 
-	ph_main = (t_phmain *)ph_memalloc(NULL, sizeof (t_phmain));
-	if (ph_main == NULL)
-		ph_exit(NULL, 1);
-	ph_struct_add_args(ph_main, argc, argv);
-	return (ph_main);
+	get_time_return = gettimeofday(&curr, NULL);
+	if (get_time_return != 0)
+	{
+		ph_exit(main, 3);
+	}
+	sec = curr.tv_sec * 1000;
+	usec = curr.tv_usec / 1000;
+	msec = curr.tv_sec * 1000 + curr.tv_usec / 1000;
+	return (msec);
 }
