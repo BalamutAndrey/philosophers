@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:04:00 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/13 11:35:57 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/14 12:56:35 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,25 @@
 
 int	main(int argc, char **argv)
 {
-	t_phmain	*ph_main;
+	t_phmain		*ph_main;
+	pthread_mutex_t	status;
+	pthread_mutex_t	meals;
+	t_ph_phil		*temp;
+	int				i;
 
 	if (argc < 5 || argc > 6)
 		ph_exit(NULL, 1);
 	ph_main = ph_struct_add(argc, argv);
+	i = 1;
+	temp = ph_main->phil_first;
+	pthread_mutex_init(&status, NULL);
+	pthread_mutex_init(&meals, NULL);
+	while ((++i) <= ph_main->num_phil)
+	{
+		temp->status = &status;
+		temp->meals = &meals;
+		temp = temp->next;
+	}
 	//
 	printf("1 = %d\n2 = %llu\n3 = %llu\n4 = %llu\n5 = %d\n", ph_main->num_phil, ph_main->time_die, ph_main->time_eat, ph_main->time_sleep, ph_main->num_time);
 	//

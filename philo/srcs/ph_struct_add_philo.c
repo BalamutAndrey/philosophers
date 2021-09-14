@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:19:42 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/14 12:37:50 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/14 12:59:23 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,14 @@ void	ph_struct_add_philo(t_phmain *ph_main)
 	int				i;
 	t_ph_phil		*curr;
 	t_ph_phil		*temp;
-	pthread_mutex_t	status;
-	pthread_mutex_t	meals;
 
 	i = 1;
-	pthread_mutex_init(&status, NULL);
-	pthread_mutex_init(&meals, NULL);
 	ph_main->phil_first = ph_struct_add_philo_phil(ph_main, i);
 	curr = ph_main->phil_first;
 	while ((++i) <= ph_main->num_phil)
 	{
 		temp = curr;
 		curr = ph_struct_add_philo_phil(ph_main, i);
-		curr->status = &status;
-		curr->meals = &meals;
 		curr->prev = temp;
 		temp->next = curr;
 	}
