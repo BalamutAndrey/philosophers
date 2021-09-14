@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 13:44:31 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/13 15:31:53 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/14 10:37:55 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ t_phmain	*ph_struct_add(int argc, char **argv)
 	if (ph_main == NULL)
 		ph_exit(NULL, 1);
 	ph_struct_add_args(ph_main, argc, argv);
+	ph_struct_add_philo(ph_main);
 	return (ph_main);
 }

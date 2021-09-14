@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 16:04:24 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/13 12:12:18 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/14 10:41:40 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ph_struct_add_args(t_phmain *ph_main, int argc, char **argv)
 		- ph_main->time_sleep;
 	if (ph_main->time_think <= 0)
 		ph_struct_args_error(ph_main, 6);
+	ph_main->time_start_prog = ph_gettime_ms(ph_main);
 }
 
 int		ph_struct_add_check(t_phmain *ph_main, char *str, int param)

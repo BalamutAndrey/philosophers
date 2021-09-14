@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:05:32 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/13 12:14:30 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/14 10:38:58 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	ph_struct_args_error(t_phmain *ph_main, int error);
 /*
 ** ph_time.c
 */
-u_int64_t	ph_gettime_ms(t_phmain *main);
+u_int64_t	ph_gettime_ms(t_phmain *ph_main);
 
 #endif
