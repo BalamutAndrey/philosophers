@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:19:42 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/14 12:59:23 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:47:42 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ t_ph_phil	*ph_struct_add_philo_phil(t_phmain *ph_main, int i)
 	new->next = NULL;
 	new->last_eat = ph_main->time_start_prog;
 	new->num_eats = 0;
+	new->ph_main = ph_main;
 	return (new);
 }

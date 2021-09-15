@@ -6,24 +6,28 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 13:31:25 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/14 12:27:58 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:52:03 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PH_STRUCTS_H
 # define PH_STRUCTS_H
 
-typedef struct			s_ph_phil
+typedef struct s_ph_phil t_ph_phil;
+typedef struct s_phmain t_phmain;
+
+typedef struct		s_ph_phil
 {
-	int					id;
-	pthread_mutex_t		fork;
-	pthread_mutex_t		*status;
-	pthread_mutex_t		*meals;
-	struct s_ph_phil	*prev;
-	struct s_ph_phil	*next;
-	u_int64_t			last_eat;
-	int					num_eats;
-}						t_ph_phil;
+	int				id;
+	pthread_mutex_t	fork;
+	pthread_mutex_t	*status;
+	pthread_mutex_t	*meals;
+	t_ph_phil		*prev;
+	t_ph_phil		*next;
+	u_int64_t		last_eat;
+	int				num_eats;
+	t_phmain		*ph_main;
+}					t_ph_phil;
 
 typedef struct	s_phmain
 {
