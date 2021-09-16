@@ -41,6 +41,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
 
 clean:
 		@rm -f $(OBJ)
+		@rm -rf $(OBJ_DIR)
 
 fclean: clean
 		@rm -rf $(NAME)
