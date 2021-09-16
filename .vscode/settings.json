@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"ph_funcs.h": "c",
+		"ph_philo.h": "c",
+		"ph_structs.h": "c",
+		"ph_main.h": "c"
+	}
+}

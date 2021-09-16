@@ -6,13 +6,13 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 14:59:15 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/13 12:13:16 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/15 16:47:55 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ph_main.h"
 
-void	ph_exit_print_error(int	error)
+void	ph_exit_print_error(int error)
 {
 	if (error == 1)
 		ph_exit_print_error_usage();
@@ -34,18 +34,18 @@ time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat] \
 
 void	ph_struct_args_error(t_phmain *ph_main, int error)
 {
-	if (error  == 1)
+	if (error == 1)
 		printf("\x1b[31m \x1b[1m \n Number of philosophers error!\x1b[0m\n");
-	else if (error  == 2)
+	else if (error == 2)
 		printf("\x1b[31m \x1b[1m \n Time to die error!\x1b[0m\n");
-	else if (error  == 3)
+	else if (error == 3)
 		printf("\x1b[31m \x1b[1m \n Time_to_eat error!\x1b[0m\n");
-	else if (error  == 4)
+	else if (error == 4)
 		printf("\x1b[31m \x1b[1m \n Time to sleep error!\x1b[0m\n");
-	else if (error  == 5)
+	else if (error == 5)
 		printf("\x1b[31m \x1b[1m \n Number of times each philosopher must eat \
 error!\x1b[0m\n");
-	else if (error  == 6)
+	else if (error == 6)
 		printf("\x1b[31m \x1b[1m \n Time to think error!\x1b[0m\n");
 	ph_exit(ph_main, 1);
 }

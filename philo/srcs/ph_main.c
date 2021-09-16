@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:04:00 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/14 14:50:13 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/16 12:05:05 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int	main(int argc, char **argv)
 		temp->meals = &meals;
 		temp = temp->next;
 	}
-	//
-	printf("1 = %d\n2 = %llu\n3 = %llu\n4 = %llu\n5 = %d\n", ph_main->num_phil, ph_main->time_die, ph_main->time_eat, ph_main->time_sleep, ph_main->num_time);
-	//
+	ph_philo_pthreads(ph_main);
 	ph_exit(ph_main, 0);
 	return (0);
 }
