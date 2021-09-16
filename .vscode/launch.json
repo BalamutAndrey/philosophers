@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/Users/bocal/work/philosophers/philo/philo",
-			"args": ["2", "500", "200", "200", "2"],
+			"args": ["2", "300", "200", "200"],
 			"stopAtEntry": false,
 			"cwd": "/Users/bocal/work/philosophers/philo",
 			"environment": [],

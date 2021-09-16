@@ -1,4 +1,4 @@
-NAME=philo_one
+NAME=philo
 
 CC=gcc
 FLAGS=-Wall -Wextra -Werror #-lpthread
@@ -8,12 +8,19 @@ OBJ_DIR=./obj
 HEADER_DIR = ./incs
 HEADER_NAME =	ph_main.h \
 				ph_funcs.h \
+				ph_philo.h \
 				ph_structs.h
-SRC_NAME =		funcs/ph_print.c \
+SRC_NAME =		funcs/ft_atoi.c \
 				funcs/ph_malloc.c \
 				ph_main.c \
 				ph_exit.c \
+				ph_errors.c \
+				ph_time.c \
+				ph_philo_pthreads.c \
+				ph_philo_pthreads_check.c \
 				ph_struct_add.c \
+				ph_struct_add_args.c \
+				ph_struct_add_philo.c \
 				ph_struct_remove.c
 
 SRC = $(addprefix $(OBJ_DIR)/, $(SRC_NAME:.c=.o))
