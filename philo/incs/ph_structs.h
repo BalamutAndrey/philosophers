@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 13:31:25 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/16 11:53:49 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/18 09:30:20 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_ph_phil
 	pthread_mutex_t	*meals;
 	t_ph_phil		*prev;
 	t_ph_phil		*next;
-	u_int64_t		last_eat;
+	int				last_eat;
 	int				num_eats;
 	t_phmain		*ph_main;
 }					t_ph_phil;
@@ -32,12 +32,12 @@ typedef struct s_ph_phil
 typedef struct s_phmain
 {
 	int			num_phil;
-	u_int64_t	time_die;
-	u_int64_t	time_eat;
-	u_int64_t	time_sleep;
+	int			time_die;
+	int			time_eat;
+	int			time_sleep;
 	int			num_time;
-	u_int64_t	time_think;
-	u_int64_t	time_start_prog;
+	int			time_think;
+	int			time_start_prog;
 	t_ph_phil	*phil_first;
 }				t_phmain;
 

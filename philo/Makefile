@@ -1,10 +1,23 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/09/18 12:25:12 by eboris            #+#    #+#              #
+#    Updated: 2021/09/18 12:56:52 by eboris           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME=philo
 
-CC=gcc
-FLAGS=-Wall -Wextra -Werror #-lpthread
+CC=clang
+FLAGS=-Wall -Wextra -Werror -O3 -pthread
 
 SRC_DIR=./srcs
 OBJ_DIR=./obj
+OBJ_DIR_FUNCS=./funcs
 HEADER_DIR = ./incs
 HEADER_NAME =	ph_main.h \
 				ph_funcs.h \
@@ -26,21 +39,21 @@ SRC_NAME =		funcs/ft_atoi.c \
 SRC = $(addprefix $(OBJ_DIR)/, $(SRC_NAME:.c=.o))
 HEADER = $(addprefix $(HEADER_DIR)/, $(HEADER_NAME))
 OBJ = $(SRC)
-INC = -I ./incs
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) -o $(NAME) $(SRC) $(INC) $(FLAGS)
+	@$(CC) -o $(NAME) $(SRC) -I $(HEADER_DIR) $(FLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
-	@mkdir -p obj
-	@mkdir -p obj/funcs
-	@$(CC) -o $@ -c $< $(INC) $(FLAGS)
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/$(OBJ_DIR_FUNCS)
+	@$(CC) -o $@ -c $< -I $(HEADER_DIR) $(FLAGS)
 	@printf "\033[0m\033[36%-45s\033[1m\033[34m%s\033[0m\n" "m$(notdir $<)" "OK"
 
 clean:
 		@rm -f $(OBJ)
+		@rm -rf $(OBJ_DIR_FUNCS)
 		@rm -rf $(OBJ_DIR)
 
 fclean: clean

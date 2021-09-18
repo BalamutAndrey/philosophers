@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 13:43:27 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/16 16:26:12 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/18 09:24:25 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,21 @@ void	*ph_philo_one_philo(void *phil)
 
 void	ph_philo_message(t_phmain *ph_main, t_ph_phil *philo, int message)
 {
-	u_int64_t	time;
+	int	ph_time;
 
-	time = ph_time_after_start(ph_main);
+	ph_time = ph_time_after_start(ph_main);
 	if (message == 1)
-		printf("%llu %d died\n", time, philo->id);
+	{
+		printf("%d %d died\n", ph_time, philo->id);
+	}	
 	else if (message == 2)
-		printf("%llu %d has taken a fork\n", time, philo->id);
+		printf("%d %d has taken a fork\n", ph_time, philo->id);
 	else if (message == 3)
-		printf("%llu %d has taken a fork\n", time, philo->id);
+		printf("%d %d has taken a fork\n", ph_time, philo->id);
 	else if (message == 4)
-		printf("%llu %d is eating\n", time, philo->id);
+		printf("%d %d is eating\n", ph_time, philo->id);
 	else if (message == 5)
-		printf("%llu %d is sleeping\n", time, philo->id);
+		printf("%d %d is sleeping\n", ph_time, philo->id);
 	else if (message == 6)
-		printf("%llu %d is thinking\n", time, philo->id);
+		printf("%d %d is thinking\n", ph_time, philo->id);
 }
