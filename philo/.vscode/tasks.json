@@ -1,0 +1,32 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: clang сборка активного файла",
+            "command": "/usr/bin/clang",
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-g",
+                "/Users/bocal/work/philosophers/philo/srcs/*.c",
+                "/Users/bocal/work/philosophers/philo/srcs/funcs/*.c",
+                "-I",
+                "/Users/bocal/work/philosophers/philo/incs",
+                "-o",
+                "/Users/bocal/work/philosophers/philo/philo"
+            ],
+            "options": {
+                "cwd": "/Users/bocal/work/philosophers/philo"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Задача создана отладчиком."
+        }
+    ],
+    "version": "2.0.0"
