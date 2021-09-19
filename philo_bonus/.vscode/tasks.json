@@ -9,15 +9,15 @@
                 "-Wextra",
                 "-Werror",
                 "-g",
-                "/Users/bocal/work/philosophers/philo/srcs/*.c",
-                "/Users/bocal/work/philosophers/philo/srcs/funcs/*.c",
+                "/Users/bocal/work/philosophers/philo_bonus/srcs/*.c",
+                "/Users/bocal/work/philosophers/philo_bonus/srcs/funcs/*.c",
                 "-I",
-                "/Users/bocal/work/philosophers/philo/incs",
+                "/Users/bocal/work/philosophers/philo_bonus/incs",
                 "-o",
-                "/Users/bocal/work/philosophers/philo/philo"
+                "/Users/bocal/work/philosophers/philo_bonus/philo_bonus"
             ],
             "options": {
-                "cwd": "/Users/bocal/work/philosophers/philo"
+                "cwd": "/Users/bocal/work/philosophers/philo_bonus"
             },
             "problemMatcher": [
                 "$gcc"
