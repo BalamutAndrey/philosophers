@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:05:32 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/18 09:29:16 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/26 11:31:45 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	ph_struct_args_error(t_phmain *ph_main, int error);
 */
 int		ph_gettime_ms(t_phmain *ph_main);
 void	ph_usleep(t_phmain *ph_main, int time);
+void	ph_sleep(t_phmain *ph_main, int time_start, int pause);
 int		ph_time_after_start(t_phmain *ph_main);
 #endif
