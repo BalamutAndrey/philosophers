@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:19:42 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/19 14:37:30 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/20 10:39:06 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_ph_phil	*ph_struct_add_philo_phil(t_phmain *ph_main, int i)
 
 	new = ph_memalloc(ph_main, sizeof(t_ph_phil));
 	new->id = i;
+	new->pid = -1;
 	new->prev = NULL;
 	new->next = NULL;
 	new->last_eat = ph_main->time_start_prog;

@@ -1,0 +1,67 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ph_philo_pthreads_check.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/16 16:03:27 by eboris            #+#    #+#             */
+/*   Updated: 2021/09/20 11:43:27 by eboris           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ph_main.h"
+
+void	*ph_philo_is_dead(void *phil)
+{
+	t_ph_phil	*philo;
+	int			ph_time;
+	int			dead;
+
+	philo = (t_ph_phil *)phil;
+	ph_time = ph_gettime_ms(philo->ph_main);
+	dead = 1;
+	while (philo)
+	{
+		if (ph_time - philo->last_eat > philo->ph_main->time_die)
+		{
+			ph_philo_message(philo->ph_main, philo, 1);
+			// ph_exit(philo->ph_main, 2);
+			exit (0);
+		}
+		else if (philo->ph_main->num_time != -1 && philo->num_eats \
+				>= philo->ph_main->num_time && dead == 1)
+		{
+			ph_usleep(philo->ph_main, philo->id);
+			dead = 0;
+			return (NULL);
+		}
+		ph_time = ph_gettime_ms(philo->ph_main);
+	}
+	return (NULL);
+}
+
+void	*ph_philo_num_time_full(void *phmain)
+{
+	t_phmain	*ph_main;
+	t_ph_phil	*temp;
+	int			i;
+
+	ph_main = (t_phmain *)phmain;
+	temp = ph_main->phil_first;
+	i = 1;
+	while (i <= ph_main->num_phil)
+	{
+		sem_wait(ph_main->meals);
+		i++;
+		temp = temp->next;
+	}
+	// For test only!!!
+	printf("\nНаелись\n");
+	// End test
+	sem_unlink("forks");
+	sem_unlink("meals");
+	ph_exit(ph_main, 2);
+	exit (0);
+	return (NULL);
+}

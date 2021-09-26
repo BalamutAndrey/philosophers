@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:04:00 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/16 12:05:05 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/25 11:59:07 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int	main(int argc, char **argv)
 	t_ph_phil		*temp;
 	int				i;
 
+	// int z = 0;
+	// while (++z < 100)
+	// {
 	if (argc < 5 || argc > 6)
 		ph_exit(NULL, 1);
 	ph_main = ph_struct_add(argc, argv);
@@ -27,13 +30,12 @@ int	main(int argc, char **argv)
 	temp = ph_main->phil_first;
 	pthread_mutex_init(&status, NULL);
 	pthread_mutex_init(&meals, NULL);
-	while ((++i) <= ph_main->num_phil)
-	{
-		temp->status = &status;
-		temp->meals = &meals;
-		temp = temp->next;
-	}
+	ph_main->status = &status;
+	ph_main->meals = &meals;
+	pthread_mutex_lock(ph_main->status);
+	pthread_mutex_lock(ph_main->meals);
 	ph_philo_pthreads(ph_main);
+	// }
 	ph_exit(ph_main, 0);
 	return (0);
 }

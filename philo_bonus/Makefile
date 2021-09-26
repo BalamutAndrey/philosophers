@@ -6,7 +6,7 @@
 #    By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/18 12:25:12 by eboris            #+#    #+#              #
-#    Updated: 2021/09/19 11:42:12 by eboris           ###   ########.fr        #
+#    Updated: 2021/09/20 10:33:54 by eboris           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC_NAME =		funcs/ft_atoi.c \
 				ph_exit.c \
 				ph_errors.c \
 				ph_time.c \
-				ph_philo_pthreads.c \
+				ph_philo_fork_process.c \
 				ph_philo_pthreads_check.c \
 				ph_struct_add.c \
 				ph_struct_add_args.c \

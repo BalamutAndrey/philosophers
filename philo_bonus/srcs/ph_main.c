@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:04:00 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/19 14:01:44 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/20 11:50:40 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,15 @@
 int	main(int argc, char **argv)
 {
 	t_phmain		*ph_main;
-	pthread_mutex_t	status;
-	pthread_mutex_t	meals;
-	t_ph_phil		*temp;
-	int				i;
 
 	if (argc < 5 || argc > 6)
 		ph_exit(NULL, 1);
 	ph_main = ph_struct_add(argc, argv);
-	i = 1;
-	temp = ph_main->phil_first;
-	// pthread_mutex_init(&status, NULL);	OLD
-	// pthread_mutex_init(&meals, NULL);	OLD
-	while ((++i) <= ph_main->num_phil)
-	{
-		temp->status = &status;
-		temp->meals = &meals;
-		temp = temp->next;
-	}
-	ph_philo_pthreads(ph_main);
+	ph_philo_fork_process(ph_main);
+	sem_close(ph_main->forks);
+	sem_close(ph_main->meals);
+	sem_unlink("forks");
+	sem_unlink("meals");
 	ph_exit(ph_main, 0);
 	return (0);
 }

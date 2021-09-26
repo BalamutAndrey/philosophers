@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 13:43:27 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/18 09:24:25 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/26 09:09:45 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,71 @@
 
 void	ph_philo_pthreads(t_phmain *ph_main)
 {
-	t_ph_phil		*philo;
-	pthread_mutex_t	status;
-	pthread_mutex_t	meals;
-	pthread_t		tid;
-	int				i;
+	// t_ph_phil	*philo;
+	// int			i;
+	// ph_usleep(ph_main, 1000);
+	ph_philo_pthread_create(ph_main);
+	pthread_mutex_lock(ph_main->status);
+	// i = 1;
+	// philo = ph_main->phil_first;
 
-	pthread_mutex_init(&status, NULL);
-	pthread_mutex_init(&meals, NULL);
-	pthread_mutex_lock(&status);
-	ph_philo_pthread_create(ph_main, &status, &meals, &tid);
-	if (ph_main->num_time != -1)
-		pthread_create(&tid, NULL, ph_philo_num_time_full, ph_main);
-	pthread_mutex_lock(&status);
-	i = 1;
-	philo = ph_main->phil_first;
-	while (i <= ph_main->num_phil)
-	{
-		pthread_mutex_destroy(&philo->fork);
-		philo = philo->next;
-		i++;
-	}
-	pthread_mutex_destroy(&status);
-	pthread_mutex_destroy(&meals);
+	//
+
+	// while (i <= ph_main->num_phil)
+	// {
+	// 	pthread_mutex_destroy(&philo->fork);
+	// 	philo = philo->next;
+	// 	i++;
+	// }
+	
+	// pthread_mutex_destroy(&status);
+	// pthread_mutex_destroy(&meals);
 }
 
-void	ph_philo_pthread_create(t_phmain *ph_main, pthread_mutex_t *status, \
-			pthread_mutex_t *meals, pthread_t *tid)
+void	ph_philo_is_deads(t_ph_phil *philo)
+{
+	t_phmain	*ph_main;
+	int			ph_time;
+
+	ph_main = philo->ph_main;
+	ph_time = ph_gettime_ms(ph_main);
+	if (ph_time - philo->last_eat > ph_main->time_die)
+	{
+		// ph_usleep(ph_main, 9);
+		printf("%d == %d - %d = %d (dead-time = %d) ==\n", philo->id, ph_time, philo->last_eat, ph_time - philo->last_eat, philo->ph_main->time_die);
+		ph_philo_message(ph_main, philo, 1);
+		pthread_mutex_unlock(ph_main->status);
+	}
+
+}
+
+void	ph_philo_pthread_create(t_phmain *ph_main)
 {
 	int			i;
 	t_ph_phil	*philo;
+	// pthread_t	dead;
+	// pthread_t	eats;
 
 	i = 1;
 	philo = ph_main->phil_first;
 	while (i <= ph_main->num_phil)
 	{
-		philo->status = status;
-		philo->meals = meals;
-		pthread_create(tid, NULL, ph_philo_one_philo, philo);
+		if (philo->id % 2 == 1)
+		{
+			// pthread_create(&eats, NULL, ph_philo_num_time_full, philo->ph_main);
+			// pthread_create(&dead, NULL, ph_philo_is_dead, philo);
+			pthread_create(&philo->tid, NULL, ph_philo_one_philo, philo);
+		}
+		philo = philo->next;
+		i++;
+	}
+	ph_usleep(ph_main, ph_main->time_eat / 2);
+	i = 1;
+	philo = ph_main->phil_first;
+	while (i <= ph_main->num_phil)
+	{
+		if (philo->id % 2 == 0)
+			pthread_create(&philo->tid, NULL, ph_philo_one_philo, philo);
 		philo = philo->next;
 		i++;
 	}
@@ -60,49 +87,38 @@ void	ph_philo_pthread_create(t_phmain *ph_main, pthread_mutex_t *status, \
 void	*ph_philo_one_philo(void *phil)
 {
 	t_ph_phil	*philo;
-	pthread_t	thread;
+	// pthread_t	dead;
+	// pthread_t	eats;
+	int			ph_time;
 
 	philo = (t_ph_phil *)phil;
-	pthread_create(&thread, NULL, ph_philo_is_dead, philo);
-	if (philo->id % 2 == 0)
-		ph_usleep(philo->ph_main, (float)philo->ph_main->time_eat * 0.9 + 1);
-	while (philo->ph_main->num_time == -1 || philo->ph_main->num_time > \
-			philo->num_eats)
+	// pthread_create(&eats, NULL, ph_philo_num_time_full, philo->ph_main);
+	// pthread_create(&dead, NULL, ph_philo_is_dead, philo);
+	ph_time = ph_gettime_ms(philo->ph_main);
+	philo->last_eat = ph_time;
+	while (philo->num_eats < philo->ph_main->num_time || philo->ph_main->num_time == -1)
 	{
+		ph_philo_is_deads(philo);
 		pthread_mutex_lock(&philo->fork);
 		ph_philo_message(philo->ph_main, philo, 2);
+		ph_philo_is_deads(philo);
 		pthread_mutex_lock(&philo->prev->fork);
 		ph_philo_message(philo->ph_main, philo, 3);
-		philo->last_eat = ph_gettime_ms(philo->ph_main);
 		ph_philo_message(philo->ph_main, philo, 4);
+		philo->last_eat = ph_gettime_ms(philo->ph_main);
 		ph_usleep(philo->ph_main, philo->ph_main->time_eat);
+		ph_philo_is_deads(philo);
 		pthread_mutex_unlock(&philo->fork);
 		pthread_mutex_unlock(&philo->prev->fork);
 		philo->num_eats = philo->num_eats + 1;
 		ph_philo_message(philo->ph_main, philo, 5);
 		ph_usleep(philo->ph_main, philo->ph_main->time_sleep);
+		ph_philo_is_deads(philo);
 		ph_philo_message(philo->ph_main, philo, 6);
+		ph_time = ph_gettime_ms(philo->ph_main);
 	}
+	philo->full_eats = 1;
+	ph_usleep(philo->ph_main, 500);
+	pthread_mutex_unlock(philo->ph_main->status);
 	return (NULL);
-}
-
-void	ph_philo_message(t_phmain *ph_main, t_ph_phil *philo, int message)
-{
-	int	ph_time;
-
-	ph_time = ph_time_after_start(ph_main);
-	if (message == 1)
-	{
-		printf("%d %d died\n", ph_time, philo->id);
-	}	
-	else if (message == 2)
-		printf("%d %d has taken a fork\n", ph_time, philo->id);
-	else if (message == 3)
-		printf("%d %d has taken a fork\n", ph_time, philo->id);
-	else if (message == 4)
-		printf("%d %d is eating\n", ph_time, philo->id);
-	else if (message == 5)
-		printf("%d %d is sleeping\n", ph_time, philo->id);
-	else if (message == 6)
-		printf("%d %d is thinking\n", ph_time, philo->id);
 }

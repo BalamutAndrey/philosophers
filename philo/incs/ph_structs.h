@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 13:31:25 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/18 09:30:20 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/25 14:45:28 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,31 @@ typedef struct s_phmain		t_phmain;
 typedef struct s_ph_phil
 {
 	int				id;
+	pthread_t		tid;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*status;
-	pthread_mutex_t	*meals;
+	// pthread_mutex_t	*full_eats;
 	t_ph_phil		*prev;
 	t_ph_phil		*next;
 	int				last_eat;
 	int				num_eats;
+	int				full_eats;
 	t_phmain		*ph_main;
 }					t_ph_phil;
 
 typedef struct s_phmain
 {
-	int			num_phil;
-	int			time_die;
-	int			time_eat;
-	int			time_sleep;
-	int			num_time;
-	int			time_think;
-	int			time_start_prog;
-	t_ph_phil	*phil_first;
-}				t_phmain;
+	int				num_phil;
+	int				time_die;
+	int				time_eat;
+	int				time_sleep;
+	int				num_time;
+	int				time_think;
+	int				time_start_prog;
+	pthread_mutex_t	*status;
+	pthread_mutex_t	*meals;
+	t_ph_phil		*phil_first;
+}					t_phmain;
 
 /*
 ** ph_struct_add.c

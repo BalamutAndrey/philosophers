@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 13:31:25 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/19 14:38:30 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/20 10:38:41 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_phmain		t_phmain;
 typedef struct s_ph_phil
 {
 	int			id;
-	pid_t		*philo_pid;
+	pid_t		pid;
 	t_ph_phil	*prev;
 	t_ph_phil	*next;
 	int			last_eat;
@@ -29,7 +29,6 @@ typedef struct s_ph_phil
 
 typedef struct s_phmain
 {
-	pid_t		*main_pid;
 	sem_t		*forks;
 	sem_t		*meals;
 	int			num_phil;
@@ -54,7 +53,7 @@ void		ph_struct_add_args(t_phmain *ph_main, int argc, char **argv);
 int			ph_struct_add_check(t_phmain *ph_main, char *str, int param);
 
 /*
-** ph_struct_remove.c
+** ph_struct_add_args.c
 */
 void		ph_struct_add_args(t_phmain *ph_main, int argc, char **argv);
 void		ph_struct_args_error(t_phmain *ph_main, int error);
@@ -63,6 +62,7 @@ void		ph_struct_args_error(t_phmain *ph_main, int error);
 ** ph_struct_remove.c
 */
 void		ph_struct_remove(t_phmain **ph_main);
+void		ph_struct_remove_kill_fork(t_phmain *ph_main);
 
 /*
 ** ph_struct_add_philo.c

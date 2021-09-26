@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:03:27 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/18 09:39:04 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/20 16:48:23 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,55 @@ void	*ph_philo_is_dead(void *phil)
 {
 	t_ph_phil	*philo;
 	int			ph_time;
+	// int			dead;
 
 	philo = (t_ph_phil *)phil;
 	ph_time = ph_gettime_ms(philo->ph_main);
-	while (philo)
-	{
-		if (ph_time - philo->last_eat > philo->ph_main->time_die)
+	// dead = 1;
+	// while (philo)
+	// {
+		if ((ph_time - philo->last_eat > philo->ph_main->time_die) && \
+			(philo->ph_main->num_time == -1 || \
+			(philo->ph_main->num_time != -1 && philo->num_eats <= philo->ph_main->num_time)))
 		{
+			ph_usleep(philo->ph_main, 5);
 			ph_philo_message(philo->ph_main, philo, 1);
-			pthread_mutex_unlock(philo->status);
-			return (NULL);
+			exit (0);
 		}
-		else if (philo->ph_main->num_time != -1 && philo->num_eats \
-				>= philo->ph_main->num_time)
-		{
-			ph_usleep(philo->ph_main, philo->id);
-			pthread_mutex_unlock(philo->meals);
-			return (NULL);
-		}
-		ph_time = ph_gettime_ms(philo->ph_main);
-	}
+		// else if (philo->ph_main->num_time != -1 && \
+		// 			philo->num_eats >= philo->ph_main->num_time && dead == 1)
+		// {
+		// 	ph_usleep(philo->ph_main, philo->id);
+		// 	dead = 0;
+		// 	return (NULL);
+		// }
+	// 	ph_time = ph_gettime_ms(philo->ph_main);
+	// }
 	return (NULL);
 }
 
-void	*ph_philo_num_time_full(void *phmain)
-{
-	t_phmain	*ph_main;
-	int			i;
+// void	*ph_philo_num_time_full(void *phmain)
+// {
+// 	t_phmain	*ph_main;
+// 	t_ph_phil	*temp;
+// 	int			i;
 
-	ph_main = (t_phmain *)phmain;
-	i = 1;
-	if (ph_main->num_time != -1)
-		pthread_mutex_lock(ph_main->phil_first->meals);
-	while ((ph_main->num_time != -1) && (i <= ph_main->num_phil))
-	{
-		pthread_mutex_lock(ph_main->phil_first->meals);
-		i++;
-	}
-	pthread_mutex_unlock(ph_main->phil_first->status);
-	return (NULL);
-}
+// 	ph_main = (t_phmain *)phmain;
+// 	temp = ph_main->phil_first;
+// 	i = 1;
+// 	while (i <= ph_main->num_phil)
+// 	{
+// 		sem_wait(ph_main->meals);
+// 		i++;
+// 		temp = temp->next;
+// 	}
+// 	// For test only!!!
+// 	ph_usleep(ph_main, 5);
+// 	printf("\nНаелись\n");
+// 	// End test
+// 	sem_unlink("forks");
+// 	sem_unlink("meals");
+// 	ph_exit(ph_main, 2);
+// 	exit (0);
+// 	return (NULL);
+// }

@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:05:32 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/19 12:18:51 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/20 10:36:26 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <semaphore.h>
+# include <signal.h>
 # include <sys/time.h>
+# include <sys/types.h>
 # include "ph_structs.h"
 # include "ph_funcs.h"
 # include "ph_philo.h"

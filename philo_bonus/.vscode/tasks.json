@@ -8,6 +8,7 @@
                 "-Wall",
                 "-Wextra",
                 "-Werror",
+                "-pthread",
                 "-g",
                 "/Users/bocal/work/philosophers/philo_bonus/srcs/*.c",
                 "/Users/bocal/work/philosophers/philo_bonus/srcs/funcs/*.c",
