@@ -13,7 +13,7 @@
 NAME=philo
 
 CC=clang
-FLAGS=-Wall -Wextra -Werror -O3 -pthread
+FLAGS=-Wall -Wextra -Werror -O3 -pthread -g -fsanitize=address
 
 SRC_DIR=./srcs
 OBJ_DIR=./obj

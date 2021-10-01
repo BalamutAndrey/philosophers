@@ -6,7 +6,7 @@
 /*   By: eboris <eboris@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 13:43:27 by eboris            #+#    #+#             */
-/*   Updated: 2021/09/26 11:49:27 by eboris           ###   ########.fr       */
+/*   Updated: 2021/09/26 12:18:18 by eboris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,9 @@ void	*ph_philo_one_philo(void *phil)
 		pthread_mutex_lock(&philo->prev->fork);
 		ph_philo_message(philo->ph_main, philo, 3);
 		ph_philo_message(philo->ph_main, philo, 4);
+		//
 		printf("time = %d\n", ph_gettime_ms(philo->ph_main) - philo->last_eat);
+		//
 		philo->last_eat = ph_gettime_ms(philo->ph_main);
 		ph_sleep(philo->ph_main, philo->last_eat, philo->ph_main->time_eat);
 		ph_philo_is_deads(philo);
